@@ -3,36 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Rust_Tracker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border 
-            Background="Gray"
+        <Grid
             Grid.Column="0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
 
-                <Button 
+            <Button 
                     x:Name="navBtnSavedPlayerList"
-                    Click="navBtnSavedPlayerList_Click"
+                    Click="NavBtnSavedPlayerList_Click"
                     Grid.Row="0" 
                     Content="Saved Player List"/>
-            </Grid>
-        </Border>
+        </Grid>
 
-        <Border 
-            Grid.Column="1">
-            <Frame x:Name="main_content"/>
-        </Border>
+        <Frame 
+            Grid.Column="1"
+            x:Name="main_content"/>
     </Grid>
 </Window>

@@ -12,16 +12,22 @@ namespace Rust_Tracker.Data
     internal class SavedPlayerDataManager
     {
         private static readonly string DATA_FILE_NAME = "SavedPlayerList.json";
-        private static SavedPlayerDataManager? Instance;
-        public static SavedPlayerDataManager GetInstance()
+        public static void SavePlayerList(List<SavedPlayer> players)
         {
-            return Instance ??= new SavedPlayerDataManager(); 
+            using FileStream fileStream = File.Open(DATA_FILE_NAME, FileMode.OpenOrCreate, FileAccess.Write);
+            JsonSerializer.Serialize(fileStream, players);
         }
 
-        public void SavePlayerList(List<SavedPlayer> players)
+        public static List<SavedPlayer> GetSavedPlayerList() {
+            using FileStream fileStream = File.Open(DATA_FILE_NAME, FileMode.Open, FileAccess.Read);
+            return JsonSerializer.Deserialize<List<SavedPlayer>>(fileStream) ?? new List<SavedPlayer>();
+        }
+
+        public static void AppendSavedPlayer(SavedPlayer player)
         {
-            FileStream fileStream = File.Open(DATA_FILE_NAME, FileMode.OpenOrCreate);
-            JsonSerializer.Serialize(fileStream, players);
+            List<SavedPlayer> players = GetSavedPlayerList();
+            players.Add(player);
+            SavePlayerList(players);
         }
     }
 }

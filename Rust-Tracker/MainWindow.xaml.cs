@@ -3,6 +3,7 @@ using Rust_Tracker.Models;
 using Rust_Tracker.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,16 +27,9 @@ namespace Rust_Tracker
         public MainWindow()
         {
             InitializeComponent();
-
-            List<SavedPlayer> players = new List<SavedPlayer>();
-            players.Add(new SavedPlayer(1149045620));
-            players.Add(new SavedPlayer(1104663416));
-            players.Add(new SavedPlayer(935652611));
-
-            SavedPlayerDataManager.GetInstance().SavePlayerList(players);
         }
 
-        private void navBtnSavedPlayerList_Click(object sender, RoutedEventArgs e)
+        private void NavBtnSavedPlayerList_Click(object sender, RoutedEventArgs e)
         {
             main_content.Navigate(new SavedPlayerList());
         }
